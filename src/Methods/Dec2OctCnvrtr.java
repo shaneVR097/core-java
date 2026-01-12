@@ -19,7 +19,7 @@ public class Dec2OctCnvrtr {
 		return res2;
 	}
 	public static void main(String[] args) {
-		int num=1024;
+		int num=1023;
 		System.out.println(d2o(num));
 	}
 }
