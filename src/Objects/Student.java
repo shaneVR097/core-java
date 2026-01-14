@@ -4,6 +4,13 @@ public class Student {
 	int id; //non static variables
 	String nm;
 	String clgnm="IEM";
+	private int pass;
+	public int getpass() {
+		return pass;
+	}
+	public void setpass(int pass) {
+		this.pass=pass;
+	}
 	public void student_init(int id,String nm) {
 		this.id=id;
 		this.nm=nm;
