@@ -3,6 +3,7 @@ package SchoolManagementApplication;
 public class Student extends Person {
 	private int rollno;
 	private char grade;
+	private Course c;
 	
 	Student(){
 		
@@ -26,6 +27,14 @@ public class Student extends Person {
 	}
 	public void setGrade(char grade) {
 		this.grade = grade;
+	}
+	
+	public void setC(Course c) {
+		this.c=c;
+	}
+	
+	public Course getC() {
+		return c;
 	}
 	
 	public void printStudent() {
