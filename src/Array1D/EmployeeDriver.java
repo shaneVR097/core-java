@@ -15,40 +15,74 @@ public class EmployeeDriver {
             System.out.println("\nEmployee " + (i + 1) + ":");
             System.out.print("Enter ID: ");
             int id = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
             System.out.print("Enter Name: ");
             String name = sc.nextLine();
             System.out.print("Enter Salary: ");
             double salary = sc.nextDouble();
-            employees[i] = new Employee(id, name, salary);
+            System.out.print("Enter Experience: ");
+            int exp = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter Department: ");
+            String dept = sc.nextLine();
+            
+            employees[i] = new Employee(id, name, salary, exp, dept);
         }
         
         EmployeeServiceImplementation service = new EmployeeServiceImplementation();
+        
         System.out.print("\nEnter minimum salary to filter high salary employees: ");
         double minSalary = sc.nextDouble();
         
         Employee[] highSalaryEmployees = service.getHighSalaryEmployee(employees, minSalary);
-        System.out.println("\n=== High Salary Employees (Salary >= " + minSalary + ") ===");
-        int count = 0;
+        System.out.println("\nHigh Salary Employees:");
         for(Employee emp : highSalaryEmployees) {
             if(emp != null) {
-                System.out.println("ID: " + emp.id + ", Name: " + emp.nm + ", Salary: " + emp.sal);
-                count++;
+                System.out.println(emp.getId()+" "+emp.getNm()+" "+emp.getSal());
             }
         }
-        System.out.println("Total high salary employees: " + count);
+        
+        System.out.print("\nEnter minimum years for experienced employees: ");
+        int minYears = sc.nextInt();
+        
+        Employee[] experiencedEmployees = service.getExperiencedEmployees(employees, minYears);
+        System.out.println("\nExperienced Employees:");
+        for(Employee emp : experiencedEmployees) {
+            if(emp != null) {
+                System.out.println(emp.getId()+" "+emp.getNm()+" "+emp.getExp());
+            }
+        }
         
         double avgSalary = service.calculateAverageSalary(employees);
-        System.out.printf("Average Salary of all employees: %.2f\n", avgSalary);
+        System.out.println("\nAverage Salary: "+avgSalary);
         
-
+        sc.nextLine();
+        System.out.print("\nEnter department for average salary: ");
+        String deptAvg = sc.nextLine();
+        double deptAvgSalary = service.getAverageSalaryBydept(employees, deptAvg);
+        System.out.println("Average Salary for "+deptAvg+": "+deptAvgSalary);
+        
         Employee topPaid = service.getTopPaidEmployee(employees);
-        System.out.println("\n=== Top Paid Employee ===");
-        System.out.println("ID: "+topPaid.id+", Name: "+topPaid.nm+", Salary: "+topPaid.sal+" (Highest Salary)");
+        System.out.println("\nTop Paid Employee:");
+        if(topPaid != null) {
+            System.out.println(topPaid.getId()+" "+topPaid.getNm()+" "+topPaid.getSal());
+        } else {
+            System.out.println("No employees found");
+        }
         
-
+        System.out.print("\nEnter department for top paid employee: ");
+        String deptTop = sc.nextLine();
+        Employee topPaidDept = service.getTopPaidEmployeeByDept(employees, deptTop);
+        System.out.println("Top Paid Employee in "+deptTop+":");
+        if(topPaidDept != null) {
+            System.out.println(topPaidDept.getId()+" "+topPaidDept.getNm()+" "+topPaidDept.getSal());
+        } else {
+            System.out.println("No employees found in department " + deptTop);
+        }
+        
+        System.out.println("\nAll Employees:");
         for(Employee emp : employees) {
-            System.out.println("ID: "+emp.id+", Name: "+emp.nm+", Salary: "+emp.sal);
+            System.out.println(emp.getId()+" "+emp.getNm()+" "+emp.getSal()+" "+emp.getExp()+" "+emp.getDept());
         }
         
         sc.close();

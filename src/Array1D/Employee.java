@@ -4,15 +4,18 @@ public class Employee {
 	int id;
 	String nm;
 	double sal;
-	// dept, experience
+	int exp;
+	String dept;
 	Employee(){
 		
 	}
 	
-	Employee(int id,String nm,double sal){
+	Employee(int id,String nm,double sal,int exp, String dept){
 		setId(id);
 		setNm(nm);
 		setSal(sal);
+		setExp(exp);
+		setDept(dept);
 	}
 	
 	public int getId() {
@@ -33,4 +36,20 @@ public class Employee {
 	public void setSal(double sal) {
 		this.sal = sal;
 	}
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public int getExp() {
+		return exp;
+	}
+
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+
 }
