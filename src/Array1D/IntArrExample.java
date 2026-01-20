@@ -17,5 +17,6 @@ public class IntArrExample {
 			 s+=a[i];
 		 }
 		 System.out.println(" is: "+s);
+		 sc.close();
 	 }
 }

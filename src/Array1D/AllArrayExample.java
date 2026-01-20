@@ -25,6 +25,7 @@ public class AllArrayExample {
 			p *= a[i];
 		}
 		System.out.println(" is: " + s + " and product is: " + p);
+		sc.close();
 	}
 
 	// Integer array (method overloading)
@@ -106,6 +107,7 @@ public class AllArrayExample {
 				so += a[i];
 			}
 		System.out.println(" is: " + so);
+		sc.close();
 	}
 
 	// Character array
@@ -128,6 +130,7 @@ public class AllArrayExample {
 			res += c[i];
 		}
 		System.out.println("\nFull String is: " + res);
+		sc.close();
 	}
 
 	// Character array overload
@@ -162,6 +165,7 @@ public class AllArrayExample {
 			res += " " + str[i];
 		}
 		System.out.println("\nFull String is:" + res);
+		sc.close();
 	}
 
 	// Boolean array AND operation
@@ -180,6 +184,7 @@ public class AllArrayExample {
 		}
 
 		System.out.println("Ultimate truth value is: " + res);
+		sc.close();
 	}
 
 	// Zig-Zag merge (CORRECTED)
@@ -204,10 +209,6 @@ public class AllArrayExample {
 
 		while (j < lb)
 			z[k++] = b[j++];
-
-//		System.out.println("\nZig-zagged elements are: ");
-//		for (int x : z)
-//			System.out.print(x + ", ");
 		
 		return z;
 	}
@@ -337,7 +338,6 @@ public class AllArrayExample {
 		for(int i=0;i<plc-1;i++) {
 			a2[i]=a[i];
 		}
-		//a2[plc-1]=e;
 		for(int i=plc;i<l;i++) {
 			a2[i-1]=a[i];
 		}
@@ -345,9 +345,6 @@ public class AllArrayExample {
 		return a2;
 	}
 	
-
-
-	// MAIN
 	public static void main(String[] args) {
 
 		int[] a = { 1, 2, 3, 4, 5, 6 };

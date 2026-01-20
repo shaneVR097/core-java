@@ -20,7 +20,7 @@ public class Example2 {
 		System.out.println(e.a1);
 		System.out.println(a2);
 		System.out.println(e.s1);
-		System.out.println(e.s2);
+//		System.out.println(e.s2); //The static field Example2.s2 should be accessed in a static way
 	}
 	
 	public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class Example2 {
 		e3=new Employee();
 		System.out.println(e2);
 		System.out.println(e3);
-		Employee e4;
+//		Employee e4;
 		//System.out.println(e4); // not possible without initializing e4
 		
 		Student s4=new Student();

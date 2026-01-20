@@ -26,11 +26,7 @@ public class FibonacciArray {
 		return fib;
 	}
 	public static void main(String[] args) {
-		BasicArray ba=new BasicArray();
-//		int[] a=ba.create1d();
-//		ba.printarray(a);
 		FibonacciArray fa=new FibonacciArray();
-//		pa.primearray(a, 'p');
 		fa.fibonacciarray(10, 'p');
 	}
 }

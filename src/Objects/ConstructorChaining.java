@@ -11,7 +11,8 @@ public class ConstructorChaining {
 	}
 	
 	public static void main(String[] args) {
-		ConstructorChaining e=new ConstructorChaining(2);
+//		ConstructorChaining e=new ConstructorChaining(2);
+		new ConstructorChaining(2);
 //		System.out.println("C1");
 	}
 

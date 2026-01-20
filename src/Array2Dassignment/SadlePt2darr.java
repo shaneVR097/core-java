@@ -59,7 +59,7 @@ public class SadlePt2darr {
 	}
 	
 	public static void main(String[] args) {
-		Create2dArray c=new Create2dArray();
+//		Create2dArray c=new Create2dArray();
 		//c.create2d();
 		int[][] a= {{9,7,6},{5,2,3},{4,1,8}};
 		SadlePt2darr sdl=new SadlePt2darr();

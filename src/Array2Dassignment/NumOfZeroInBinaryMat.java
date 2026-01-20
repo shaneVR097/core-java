@@ -39,7 +39,7 @@ public class NumOfZeroInBinaryMat {
 	}
 	
 	public static void main(String[] args) {
-		Create2dArray c=new Create2dArray();
+//		Create2dArray c=new Create2dArray();
 		//c.create2d();
 		int[][] a= {{1,1,0},{0,1,1},{1,0,1}};
 		NumOfZeroInBinaryMat nz=new NumOfZeroInBinaryMat();

@@ -69,7 +69,7 @@ public class Laptop {
 		Laptop l7=HelpLaptop.verifyLaptopPrice(50000.00,500000.00,80000.00, "Apple");
 		if(l7!=null)
 			l7.compareLaptop(l6);
-		Laptop l8;
+//		Laptop l8;
 		//System.out.println(l8); // not possible to print because l8 is a local variable kind of object reference variable and we know that without initializing local variable we cannot use it
 		Laptop l9=null;
 		System.out.println(l9); // printable because local object reference variable is initialized although null

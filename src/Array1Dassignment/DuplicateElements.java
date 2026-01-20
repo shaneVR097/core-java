@@ -24,7 +24,8 @@ public class DuplicateElements {
 	
 	public static void main(String[] args) {
 		BasicArray ba=new BasicArray();
-		int[] a=ba.create1d();
+		//int[] a=ba.create1d();
+		int[] a= {1,2,2,3,1,4,5};
 		ba.printarray(a);
 		DuplicateElements de=new DuplicateElements();
 		System.out.println("\nDuplicate Elements in array:");

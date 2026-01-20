@@ -60,11 +60,7 @@ public class PrimeElementsArray {
 		return prime;
 	}
 	public static void main(String[] args) {
-		BasicArray ba=new BasicArray();
-//		int[] a=ba.create1d();
-//		ba.printarray(a);
 		PrimeElementsArray pa=new PrimeElementsArray();
-//		pa.primearray(a, 'p');
 		pa.primearray(10, 'p');
 	}
 }

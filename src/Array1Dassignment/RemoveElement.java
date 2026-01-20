@@ -2,7 +2,7 @@ package Array1Dassignment;
 
 public class RemoveElement {
 
-	public static int[] remvelm(int[] a,int plc) {
+	public int[] remvelm(int[] a,int plc) {
 		int l=a.length;
 		int[] a2=new int[l-1];
 		for(int i=0;i<plc-1;i++) {

@@ -51,14 +51,14 @@ public class Employee {
 		
 		Employee e2=new Employee(10,"xyz",22000.09,"dev");
 		Employee e3=new Employee(10,"xyz",22000.09,"dev");
-		System.out.println("\n Check same object content: "+e2.compareContent(e3));
-		System.out.println("\n Check eqaulity of objects: "+e3.equals(e2));
+		System.out.println("\nCheck same object content: "+e2.compareContent(e3));
+		System.out.println("\nCheck eqaulity of objects: "+e3.equals(e2));
 		Employee e4=null;
-		System.out.println("\n Check null-pointer-exception: "+e2.equals(e4));
+		System.out.println("\nCheck null-pointer-exception: "+e2.equals(e4));
 		Person p=new Person(10,"xyz");
-		System.out.println("\n Check class-cast-exception: "+e2.equals(p));
-		System.out.println("\n Check same-class: "+e2.equals(e3));
-		System.out.println("\n Check same-object: "+e2.equals(e2));
+		System.out.println("\nCheck class-cast-exception: "+e2.equals(p));
+		System.out.println("\nCheck same-class: "+e2.equals(e3));
+		System.out.println("\nCheck same-object: "+e2.equals(e2));
 //		System.out.println("Enter number of employees: ");
 //		int n=sc.nextInt();
 //		Employee[] ea=new Employee[n];
