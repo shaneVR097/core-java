@@ -12,6 +12,7 @@ public class StringPrograms {
 		}
 		return a;
 	}
+	
 	public int[] numofdifftypechar(String s) { //assignment
 		if(s==null || s.length()==0)
 			return null;
@@ -38,6 +39,28 @@ public class StringPrograms {
 				s2+=c;
 		}
 		return s2;
+	}
+	public String spclchars(String s) { //assignment
+	    if(s == null || s.length() == 0)
+	        return null;
+	    
+	    String s2 = "";
+	    boolean[] seen = new boolean[256];
+	    
+	    for(int i = 0; i < s.length(); i++) {
+	        char c = s.charAt(i);
+	        if(!(c >= 'A' && c <= 'Z') &&  !(c >= 'a' && c <= 'z') && !(c >= '0' && c <= '9') && c != ' ') {  
+	            if(!seen[c]) {
+	                seen[c] = true;
+	                if(!s2.isEmpty()) {
+	                    s2 += ", ";
+	                }
+	                s2 += c;
+	            }
+	        }
+	    }
+	    
+	    return s2;
 	}
 	public String frstcharupper(String s) { //assignment
 	    if(s==null || s.length()==0)
@@ -162,18 +185,9 @@ public class StringPrograms {
 
 	    return s.substring(start, end + 1);
 	}
+
 	public String removeallspc(String s) {
-//		if(s == null || s.length() == 0)
-//	        return null;
-//		
-//		String[] s2=s.split(" ");
-//		String s3="";
-//		for(int i=0;i<s2.length;i++) {
-//			s3+=s2[i];
-//		}
-//		return s3;
 		return s.replace(" ", ""); //1 line implementation
-		
 	}
 	
 	public String wordposreversal(String s) { //"  hello   world   hi " -> "  hi   world   hello " 
@@ -211,6 +225,8 @@ public class StringPrograms {
 	}
 	
 	public boolean anagramchk(String s1, String s2) {
+		 if((s1 == null || s1.length() == 0) || (s2 == null || s2.length() == 0))
+		        return false;
 	    s1 = s1.toLowerCase();
 	    s2 = s2.toLowerCase();
 	    
@@ -225,10 +241,6 @@ public class StringPrograms {
 	                    arr1[i] = arr1[j];
 	                    arr1[j] = temp;
 	                }
-	            }
-	        }
-	        for(int i = 0; i < l - 1; i++) {
-	            for(int j = i + 1; j < l; j++) {
 	                if(arr2[i] > arr2[j]) {
 	                    char temp = arr2[i];
 	                    arr2[i] = arr2[j];
@@ -236,6 +248,7 @@ public class StringPrograms {
 	                }
 	            }
 	        }
+	       
 
 	        for(int i = 0; i < l; i++) {
 	            if(arr1[i] != arr2[i]) {
@@ -246,6 +259,29 @@ public class StringPrograms {
 	    }
 	    return false;
 	}
+	
+	public void commonchar(String s11, String s22) {
+	    if(s11 == null || s22 == null || s11.isEmpty() || s22.isEmpty()) return;
+	    
+	    String result = "";
+	    String s1 = s11.toLowerCase().replace(" ", "");
+	    String s2 = s22.toLowerCase().replace(" ", "");
+	    
+	    for(int i = 0; i < s1.length(); i++) {
+	        char c = s1.charAt(i);
+	        if(s2.contains(String.valueOf(c)) && !result.contains(String.valueOf(c))) {
+	            result+=(c+", ");
+	        }
+	    }
+	    
+	    System.out.println("\nCommon characters of '" + s11 + "' and '" + s22 + "':");
+	    if(result.length() > 0) {
+	        System.out.println(result);
+	    } else {
+	        System.out.println("No common characters");
+	    }
+	}
+
 	
 	public boolean panagramchk(String s) {
 	    s = s.toLowerCase();
@@ -264,22 +300,24 @@ public class StringPrograms {
 	        }
 	    }
 	    
-	    int[] freq = new int[26];
-	    for(char c : ch1) {
+	    int[] freq = new int[26]; // integer array of 0-25 index representing letters a:1 to z:26
+	    for(int i=0;i<ch1.length;i++) {
+	    	char c=ch1[i];
 	        if(c >= 'a' && c <= 'z') {
-	            freq[c - 'a']++;
+	        	int ln=(int)(c-'a'); //converting current encountered character to its integer counterpart where a=1, b=2... to z=26
+	            freq[ln]++; //corresponding index is incremented as many times the character is encountered in the string
 	        }
 	    }
 	    
-	    for(int count : freq) {
-	        if(count == 0) {
+	    for(int i=0;i<freq.length;i++) {
+	        if(freq[i] == 0) { //if there is any character i.e. its corresponding integer is found to have 0 frequency then full pana-gram is false
 	            return false;
 	        }
 	    }
 	    return true;
 	}
 	
-	public boolean stringcharfreq(String s) {
+	public void stringcharfreq(String s) {
 	    s = s.toLowerCase();
 	    s = s.replaceAll(" ", ""); 
 	    
@@ -296,19 +334,166 @@ public class StringPrograms {
 	        }
 	    }
 	    
-	    int[] freq = new int[26];
-	    for(char c : ch1) {
-	        if(c >= 'a' && c <= 'z') {
-	            freq[c - 'a']++;
+	    int[] freq = new int[255]; // integer array of 0-25 index representing letters a:1 to z:26
+	    for(int i=0;i<ch1.length;i++) {
+	    	char c=ch1[i];
+//	        if(c >= 'a' && c <= 'z') {
+	            freq[(int)c]++; //corresponding index is incremented as many times the character is encountered in the string
+//	        }
+	    }
+	    int mx = -1, mn = -1;
+	    boolean firstFound = false;
+	    System.out.println("\nFrequency of characters: ");
+	    for(int i = 0; i < freq.length; i++) {
+	        if(freq[i] > 0) {
+	            System.out.println((char)(i) + " is: " + freq[i]);
+	            if(!firstFound) {
+	                mx = i;
+	                mn = i;
+	                firstFound = true;
+	            } else {
+	                mx = (freq[mx] < freq[i]) ? i : mx; //most frequent
+	                mn = (freq[mn] > freq[i]) ? i : mn; //least frequent
+	            }
 	        }
 	    }
+
+	    if(mx != -1) {
+	        System.out.println("\nMost frequent character of the given string is: '" + (char)(mx) + "' with frequency of " + freq[mx]);
+	        System.out.println("\nLeast frequent character of the given string is: '" + (char)(mn) + "' with frequency of " + freq[mn]);
+	    } else {
+	        System.out.println("No characters found in the string!");
+	    }
+	}
+	
+	public boolean isogramchk(String so) {
+		if(so==null || so.length()==0) {
+	    	System.out.println("\nEmpty String !!");
+	    	return true;
+	    }
+		String s = so.toLowerCase();
+	    s = s.replaceAll("[^a-z]", "");
+	    if(s==null || s.length()==0) {
+	    	System.out.println("\nEmpty String !!");
+	    	return true;
+	    }
+	    	
+	    char[] ch1 = s.toCharArray();
 	    
-	    for(int count : freq) {
-	        if(count == 0) {
-	            return false;
+	    int[] freq = new int[26]; // integer array of 0-25 index representing letters a:1 to z:26
+	    for(int i=0;i<ch1.length;i++) {
+	    	char c=ch1[i];
+	        if(c >= 'a' && c <= 'z') {
+	            freq[(int)(c-'a')]++; //corresponding index is incremented as many times the character is encountered in the string
 	        }
 	    }
+	    for(int i = 0; i < freq.length; i++) {
+	        if(freq[i]>1)
+	        	return false;
+	    }
+
 	    return true;
+	}
+	
+	public boolean balancedparentheses(String s) {
+		char[] brkt=new char[s.length()];
+		int top=-1;
+		for(int i=0;i<s.length();i++) {
+			char c=s.charAt(i);
+			if(c=='(' || c=='[' || c=='{') {
+				top++;
+				brkt[top]=c;
+			} else if(c==')' || c==']' || c=='}' ) {
+				if(top==-1)
+					return false;
+				char op=brkt[top];
+				top--;
+				if((c==')' && op!='(') || (c=='}' && op!='{') || (c==']' && op!='['))
+					return false;
+			}
+			
+		}
+		return (top==-1) ? true : false;
+	}
+	
+	public String wordwithmaxvowels(String s) {
+		if(s==null || s.length()==0)
+			return null;
+		String max="";
+		int mxvwl=0;
+		s=s.toLowerCase().trim();
+		String[] str=s.split("[^a-z]");
+		for(String word:str) {
+			char[] ch1 = word.toCharArray();
+		    int l = ch1.length;
+		    
+		    int[] freq = new int[26]; // integer array of 0-25 index representing letters a:1 to z:26
+		    for(int i=0;i<ch1.length;i++) {
+		    	char c=ch1[i];
+		        if(c >= 'a' && c <= 'z') {
+		            freq[(int)(c-'a')]++; //corresponding index is incremented as many times the character is encountered in the string
+		        }
+		    }
+		    int vwl=0;
+		    for(int i=0;i<freq.length;i++) {
+		    	char ltr=(char)(i+'a');
+		    	if(ltr=='a' || ltr=='e' ||ltr=='i' ||ltr=='o' || ltr=='u' ) {
+		    		if(freq[i]>0)
+		    			vwl++;
+		    	}
+		    }
+		    mxvwl = (mxvwl<vwl) ? vwl:mxvwl;
+		    
+		}
+		for(String word:str) {
+			char[] ch1 = word.toCharArray();
+		    int l = ch1.length;
+		    
+		    int[] freq = new int[26]; // integer array of 0-25 index representing letters a:1 to z:26
+		    for(int i=0;i<ch1.length;i++) {
+		    	char c=ch1[i];
+		        if(c >= 'a' && c <= 'z') {
+		            freq[(int)(c-'a')]++; //corresponding index is incremented as many times the character is encountered in the string
+		        }
+		    }
+		    int vwl=0;
+		    for(int i=0;i<freq.length;i++) {
+		    	char ltr=(char)(i+'a');
+		    	if(ltr=='a' || ltr=='e' ||ltr=='i' ||ltr=='o' || ltr=='u' ) {
+		    		if(freq[i]>0)
+		    			vwl++;
+		    	}
+		    }
+		    if(vwl==mxvwl)
+		    	max=word;
+		    
+		}
+		return max;
+	}
+	
+	public String shortenedstring(String s) {
+		if(s==null)
+			return null;
+		s=s.trim();
+		s=s.replaceAll(" ", "");
+		char[] ch1 = s.toCharArray();
+	    int l = ch1.length;
+	    
+	    int[] freq = new int[26]; // integer array of 0-25 index representing letters a:1 to z:26
+	    for(int i=0;i<ch1.length;i++) {
+	    	char c=ch1[i];
+	        if(c >= 'a' && c <= 'z') {
+	            freq[(int)(c-'a')]++; //corresponding index is incremented as many times the character is encountered in the string
+	        }
+	    }
+	    String res="";
+	    for(int i=0;i<freq.length;i++) {
+	    	if(freq[i]>0) {
+	    		res+=(char)(i+'a');
+	    		res+=(char)(freq[i]+'0');
+	    	}
+	    }
+	    return res;
 	}
 	
 	public static void main(String[] args) {
@@ -394,16 +579,48 @@ public class StringPrograms {
 		s3=" abC  De1  fhI";
 		System.out.println("\nString after removing all spaces'"+s3+"' is: "+sp.removeallspc(s3));
 		
-		 System.out.println("[" + sp.wordposreversal("  hello   world   hi ") + "]");
-		    // Expected: "  hi   world   hello "
-		    
-		    System.out.println("[" + sp.wordposreversal("hello world") + "]");
-		    // Expected: "world hello"
-		    
-		    System.out.println("[" + sp.wordposreversal("   a   b   c   ") + "]");
-		    // Expected: "   c   b   a   "
-		System.out.println("\nAnagram check: "+sp.anagramchk("worth", "throw"));
-		System.out.println("\nPanagram check: "+sp.panagramchk("The quick brown fox jumps over the lazy dog"));
+		System.out.println("[" + sp.wordposreversal("  hello   world   hi ") + "]");	// Expected: "  hi   world   hello "    
+		System.out.println("[" + sp.wordposreversal("hello world") + "]");				// Expected: "world hello"
+		System.out.println("[" + sp.wordposreversal("   a   b   c   ") + "]");			// Expected: "   c   b   a   "
+
+		String sana1="worth",sana2="throw";
+		System.out.println("\nAnagram check of '"+sana1+"' v/s '"+sana2+"' is: "+sp.anagramchk(sana1, sana2));
+		
+		s3="The quick brown fox jumps over the lazy dog";
+		System.out.println("\nPanagram check: "+sp.panagramchk(s3));
+		sp.stringcharfreq(s3);
+		
+		s3="@123@+-797-8^&%*^%*hjhvvk&%T*&%T*";
+		sp.stringcharfreq(s3);
+		
+		String word1="apple grape",word2="grape apple";
+		sp.commonchar(word1, word2);
+		
+		s3="Machine";
+		System.out.println("\nIsogram check of '"+s3+"' is: "+sp.isogramchk(s3));
+		s3="Hello";
+		System.out.println("\nIsogram check of '"+s3+"' is: "+sp.isogramchk(s3));
+		s3=null;
+		System.out.println("\nIsogram check of '"+s3+"' is: "+sp.isogramchk(s3));
+		s3="       ";
+		System.out.println("\nIsogram check of '"+s3+"' is: "+sp.isogramchk(s3));
+		
+		s3="{[()]}";
+		System.out.println("\nBalanced parentheses check of '"+s3+"' is: "+sp.balancedparentheses(s3));
+		s3="{[()}";
+		System.out.println("\nBalanced parentheses check of '"+s3+"' is: "+sp.balancedparentheses(s3));
+		
+		s3="I love programming";
+		System.out.println("\nWord with maximum vowels in '"+s3+"' is: "+sp.wordwithmaxvowels(s3));
+		
+		s3="aaabbccc";
+		System.out.println("\nShortened string of '"+s3+"' is: "+sp.shortenedstring(s3));
+		
+		s3=sp.shortenedstring(s3);
+		System.out.println("\nString after removal of numbers from '"+s3+"' is: "+sp.removenum(s3));
+		
+		s3="Hello@123#$45%";
+		System.out.println("\nSpecial characters in the string '"+s3+"' are: "+sp.spclchars(s3));
 	}
 }
  //find how many alphabets present in string
