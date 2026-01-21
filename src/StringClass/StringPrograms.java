@@ -175,6 +175,142 @@ public class StringPrograms {
 		return s.replace(" ", ""); //1 line implementation
 		
 	}
+	
+	public String wordposreversal(String s) { //"  hello   world   hi " -> "  hi   world   hello " 
+	    if(s == null || s.length() == 0)
+	        return null;
+	    
+	    String[] words = s.split("\\s+");
+	    
+	    String[] spaces = s.split("\\w+");
+	    StringBuilder result = new StringBuilder();
+	    
+	    if(s.charAt(0) == ' ') {
+	        result.append(spaces[0]);
+	    }
+	    
+	    for(int i = words.length-1; i >= 0; i--) {
+	        if(!words[i].isEmpty()) {
+	            result.append(words[i]);
+	            if(i > 0) {
+	                int spaceIndex = words.length - i;
+	                if(spaceIndex < spaces.length) {
+	                    result.append(spaces[spaceIndex]);
+	                } else {
+	                    result.append(" ");
+	                }
+	            }
+	        }
+	    }
+	    
+	    if(s.charAt(s.length()-1) == ' ') {
+	        result.append(spaces[spaces.length-1]);
+	    }
+	    
+	    return result.toString();
+	}
+	
+	public boolean anagramchk(String s1, String s2) {
+	    s1 = s1.toLowerCase();
+	    s2 = s2.toLowerCase();
+	    
+	    if(s1.length() == s2.length()) {
+	        char[] arr1 = s1.toCharArray();
+	        char[] arr2 = s2.toCharArray();
+	        int l = arr1.length;
+	        for(int i = 0; i < l - 1; i++) {
+	            for(int j = i + 1; j < l; j++) {
+	                if(arr1[i] > arr1[j]) {
+	                    char temp = arr1[i];
+	                    arr1[i] = arr1[j];
+	                    arr1[j] = temp;
+	                }
+	            }
+	        }
+	        for(int i = 0; i < l - 1; i++) {
+	            for(int j = i + 1; j < l; j++) {
+	                if(arr2[i] > arr2[j]) {
+	                    char temp = arr2[i];
+	                    arr2[i] = arr2[j];
+	                    arr2[j] = temp;
+	                }
+	            }
+	        }
+
+	        for(int i = 0; i < l; i++) {
+	            if(arr1[i] != arr2[i]) {
+	                return false;
+	            }
+	        }
+	        return true; 
+	    }
+	    return false;
+	}
+	
+	public boolean panagramchk(String s) {
+	    s = s.toLowerCase();
+	    s = s.replaceAll(" ", ""); 
+	    
+	    char[] ch1 = s.toCharArray();
+	    int l = ch1.length;
+	    
+	    for(int i = 0; i < l; i++) {
+	        for(int j = i + 1; j < l; j++) {
+	            if(ch1[i] > ch1[j]) {
+	                char temp = ch1[i];
+	                ch1[i] = ch1[j];
+	                ch1[j] = temp;
+	            }
+	        }
+	    }
+	    
+	    int[] freq = new int[26];
+	    for(char c : ch1) {
+	        if(c >= 'a' && c <= 'z') {
+	            freq[c - 'a']++;
+	        }
+	    }
+	    
+	    for(int count : freq) {
+	        if(count == 0) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	
+	public boolean stringcharfreq(String s) {
+	    s = s.toLowerCase();
+	    s = s.replaceAll(" ", ""); 
+	    
+	    char[] ch1 = s.toCharArray();
+	    int l = ch1.length;
+	    
+	    for(int i = 0; i < l; i++) {
+	        for(int j = i + 1; j < l; j++) {
+	            if(ch1[i] > ch1[j]) {
+	                char temp = ch1[i];
+	                ch1[i] = ch1[j];
+	                ch1[j] = temp;
+	            }
+	        }
+	    }
+	    
+	    int[] freq = new int[26];
+	    for(char c : ch1) {
+	        if(c >= 'a' && c <= 'z') {
+	            freq[c - 'a']++;
+	        }
+	    }
+	    
+	    for(int count : freq) {
+	        if(count == 0) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	
 	public static void main(String[] args) {
 		
 		String s="abc@1234";
@@ -257,6 +393,17 @@ public class StringPrograms {
 		System.out.println("\nString after removing all spaces'"+s3+"' is: "+sp.removeallspc(s3));
 		s3=" abC  De1  fhI";
 		System.out.println("\nString after removing all spaces'"+s3+"' is: "+sp.removeallspc(s3));
+		
+		 System.out.println("[" + sp.wordposreversal("  hello   world   hi ") + "]");
+		    // Expected: "  hi   world   hello "
+		    
+		    System.out.println("[" + sp.wordposreversal("hello world") + "]");
+		    // Expected: "world hello"
+		    
+		    System.out.println("[" + sp.wordposreversal("   a   b   c   ") + "]");
+		    // Expected: "   c   b   a   "
+		System.out.println("\nAnagram check: "+sp.anagramchk("worth", "throw"));
+		System.out.println("\nPanagram check: "+sp.panagramchk("The quick brown fox jumps over the lazy dog"));
 	}
 }
  //find how many alphabets present in string
