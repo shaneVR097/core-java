@@ -44,12 +44,12 @@ public class Demo {
 		System.out.println(a3.get(0).getClass()==a3.get(4).getClass());
 		a3.addAll(a2);
 		System.out.println(a3);
-		a3.add(new Student(0,null));
+		a3.add(new Student(0,null,30));
 		System.out.println(a3.get(8).toString());
 		
 		ArrayList<Student> stu=new ArrayList<Student>();
-		stu.add(new Student(10,"hari"));
-		stu.add(new Student(11,"om"));
+		stu.add(new Student(10,"hari",40));
+		stu.add(new Student(11,"om",45));
 		for(int i=0;i<stu.size();i++) {
 			System.out.println(stu.get(i).toString());
 		}
