@@ -10,7 +10,7 @@ public class EmployeeDriver {
 		emp.add( new Employee(4,"jadu",23000.00,"cloud"));
 		List<Employee> empcloud =findempbydept(emp, "cloud");
 		List<Employee> empdev =findempbydept(emp, "dev");
-		List<Employee> emp21 =findempbysal(emp, 21000.00);
+		List<Employee> emp21 =findempbysal(emp, 21090.00);
 		for(Employee e:empcloud) {
 			System.out.println(e.toString());
 		}
