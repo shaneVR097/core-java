@@ -8,7 +8,7 @@ public class TypesOfException {
 
 		String s="abc";
 //		System.out.println(s.charAt(5)); //Exception in thread "main" java.lang.StringIndexOutOfBoundsException: Index 5 out of bounds for length 3
-		s=null;
+//		s=null;
 //		System.out.println(s.charAt(9)); // Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.charAt(int)" because "s" is null
 //		at core_java/ExceptionHandling.ArithmeticExcptn.main(ArithmeticExcptn.java:12)
 

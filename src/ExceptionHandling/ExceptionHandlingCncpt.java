@@ -6,6 +6,8 @@ public class ExceptionHandlingCncpt  {
             System.out.println(a/b);    
         } catch (ArithmeticException e) {
             System.out.println("Arithmetic exception: / by 0 !!");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     public void stringidxoutofboundexcptn(String s) {
